@@ -27,8 +27,10 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="gradient-text">Dev</span>
-          <span className="text-white">Portfolio</span>
+          <span className="text-white">&#x7B;</span>
+          <span className="text-gray-400">code</span>
+          <span className="gradient-text">Leaf</span>
+          <span className="text-white">&#x7D;</span>
         </motion.a>
 
         {/* Desktop Navigation */}

@@ -1,12 +1,36 @@
 import { motion } from "framer-motion";
 import { scrollToSection } from "@/lib/scrollUtils";
+import Particles from "./ui/Particles";
 
 const HeroSection = () => {
+  const socialLinks = [
+    {
+      icon: "fab fa-github",
+      url: "https://www.github.com/Adiomojeed",
+      label: "GitHub",
+    },
+    {
+      icon: "fab fa-linkedin",
+      url: "https://www.linkedin.com/in/Adiomojeed",
+      label: "LinkedIn",
+    },
+    {
+      icon: "fab fa-twitter",
+      url: "https://www.twitter.com/@adio_mojeed",
+      label: "Twitter",
+    },
+    {
+      icon: "fab fa-instagram",
+      url: "https://www.instagram.com/codeleaf_",
+      label: "Instagram",
+    },
+  ];
   return (
     <section
       id="hero"
       className="h-screen flex items-center justify-center relative overflow-hidden"
     >
+      <Particles />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-dark-lighter opacity-50"></div>
       <div className="absolute w-full h-full">
         <motion.div
@@ -38,36 +62,44 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 z-10 text-center md:text-left md:flex md:items-center md:justify-between">
         <motion.div
-          className="md:max-w-2xl"
+          className="md:max-w-2xl lg:pr-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-4"
+            className="text-5xl md:text-6xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="text-white">Hi, I'm</span>{" "}
-            <span className="gradient-text">John Doe</span>
+            <span className="text-gray-400">Hi,</span> <br />
+            <span className="text-white">
+              <span className="text-gray-400">I'm</span> Mojeed
+            </span>
+            {/* <span className="gradient-text">Mojeed Adio</span> */}
           </motion.h1>
           <motion.h2
-            className="text-2xl md:text-3xl mb-6 text-gray-300"
+            className="text-lg md:text-2xl font-medium mb-6 text-gray-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Frontend Developer & UI Engineer
+            Sr. Frontend Engineer | FullStack Developer | Solutions Architect
           </motion.h2>
           <motion.p
-            className="text-xl mb-8 text-gray-400 max-w-2xl"
+            className="text-base md:text-lg mb-8 text-gray-400 max-w-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            I build exceptional digital experiences with modern web technologies.
-            Specializing in React, Next.js, and responsive design solutions.
+            I develop top-quality web applications and deliver pixel-perfect,
+            high-performance solutions. I also specialize in building engaging
+            applications that meet business goals and exceeds user expectations.
+            I put in 100% efforts into every project and I don't deliver
+            anything short of excellence.
+            {/* A Senior Software Engineer who build exceptional digital experiences with modern web technologies.  */}
+            {/* Specialized in React, Next, Express, Node and related technologies to build responsive and efficient products, I am about crafting web applications that excel in both speed and design. */}
           </motion.p>
           <motion.div
             className="flex flex-wrap gap-4 justify-center md:justify-start"
@@ -89,12 +121,31 @@ const HeroSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Contact Me
+              Resume <i className="fas fa-download"></i>
             </motion.button>
+            <motion.div
+              className="flex items-center space-x-6 mt8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.url}
+                  className="text-gray-400 hover:text-primary transition-colors"
+                  aria-label={link.label}
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <i className={`${link.icon} text-2xl`}></i>
+                </motion.a>
+              ))}
+            </motion.div>
           </motion.div>
         </motion.div>
         <motion.div
-          className="hidden md:block"
+          className="hidden md:block lg:mr-20"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}

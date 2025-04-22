@@ -31,50 +31,92 @@ const ContactSection = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch(`https://formspree.io/f/mdkgoapg`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setIsSubmitting(false);
+      } else {
+        // Form submission failed
+        const error = await response.json();
+        toast({
+          title: "Error!",
+          description:
+            error.message || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        title: "Error!",
+        description:
+          (error as any)?.message || "Something went wrong. Please try again.",
       });
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
     {
       title: "Email",
-      content: "john.doe@example.com",
-      link: "mailto:john.doe@example.com",
+      content: "adio.mojeed@gmail.com",
+      link: "mailto:adio.mojeed@gmail.com",
       icon: "fas fa-envelope",
     },
     {
       title: "Location",
-      content: "San Francisco, California",
+      content: "London, United Kingdom",
       link: null,
       icon: "fas fa-map-marker-alt",
     },
   ];
 
   const socialLinks = [
-    { name: "GitHub", icon: "fab fa-github", link: "#" },
-    { name: "LinkedIn", icon: "fab fa-linkedin-in", link: "#" },
-    { name: "Twitter", icon: "fab fa-twitter", link: "#" },
-    { name: "Medium", icon: "fab fa-medium-m", link: "#" },
+    {
+      icon: "fab fa-github",
+      url: "https://www.github.com/Adiomojeed",
+      label: "GitHub",
+    },
+    {
+      icon: "fab fa-linkedin",
+      url: "https://www.linkedin.com/in/Adiomojeed",
+      label: "LinkedIn",
+    },
+    {
+      icon: "fab fa-twitter",
+      url: "https://www.twitter.com/@adio_mojeed",
+      label: "Twitter",
+    },
+    {
+      icon: "fab fa-instagram",
+      url: "https://www.instagram.com/codeleaf_",
+      label: "Instagram",
+    },
   ];
 
   const availableFor = [
     "Full-time Positions",
+    "Contracts",
     "Freelance Projects",
     "Consulting",
     "Remote Work",
@@ -91,13 +133,29 @@ const ContactSection = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold inline-block mb-4">
-              <span className="gradient-text">Get In Touch</span>
-            </h2>
+            <div className="text-center mb-16 relative">
+              <motion.h3
+                className="text-6xl md:text-8xl font-black text-[#39383a] text-opacity-50 uppercase mb-8 tracking-wider"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                contact
+              </motion.h3>
+              <motion.h3
+                className="text-4xl md:text-5xl font-black uppercase mb-8 tracking-wider absolute top-3 md:top-6 left-0 right-0"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                contact
+              </motion.h3>
+            </div>
             <div className="w-24 h-1 gradient-bg mx-auto rounded-full"></div>
             <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-              Feel free to reach out for collaborations, job opportunities, or just to say hi!
-              I'll do my best to get back to you as soon as possible.
+              Feel free to reach out for collaborations, job opportunities, or
+              just to say hi! I'll do my best to get back to you as soon as
+              possible.
             </p>
           </motion.div>
         </div>
@@ -120,13 +178,18 @@ const ContactSection = () => {
                       <i className={`${info.icon} text-white`}></i>
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-gray-400 text-sm mb-1">{info.title}</h4>
+                      <h4 className="text-gray-400 text-sm mb-1">
+                        {info.title}
+                      </h4>
                       {info.link ? (
-                        <a href={info.link} className="text-lg hover:text-primary transition-colors">
+                        <a
+                          href={info.link}
+                          className="text-lg hover:text-primary transition-colors"
+                        >
                           {info.content}
                         </a>
                       ) : (
-                        <p className="text-lg">{info.content}</p>
+                        <p className="text-lg text-gray-400">{info.content}</p>
                       )}
                     </div>
                   </div>
@@ -142,9 +205,9 @@ const ContactSection = () => {
                       {socialLinks.map((social, index) => (
                         <motion.a
                           key={index}
-                          href={social.link}
+                          href={social.url}
                           className="w-10 h-10 rounded-full bg-dark-light flex items-center justify-center hover:bg-primary/20 transition-colors"
-                          aria-label={social.name}
+                          aria-label={social.label}
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
@@ -244,16 +307,24 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <Button
                     type="submit"
                     className="w-full py-6 gradient-bg rounded-md text-white font-medium hover:shadow-lg hover:shadow-primary/20 transition-all"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      <>Sending... <i className="fas fa-spinner fa-spin ml-2"></i></>
+                      <>
+                        Sending...{" "}
+                        <i className="fas fa-spinner fa-spin ml-2"></i>
+                      </>
                     ) : (
-                      <>Send Message <i className="fas fa-paper-plane ml-2"></i></>
+                      <>
+                        Send Message <i className="fas fa-paper-plane ml-2"></i>
+                      </>
                     )}
                   </Button>
                 </motion.div>

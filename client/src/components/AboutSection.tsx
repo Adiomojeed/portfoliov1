@@ -5,37 +5,36 @@ const AboutSection = () => {
   const { ref: refSection, isVisible: isSectionVisible } = useAnimateOnScroll();
   const { ref: refContent, isVisible: isContentVisible } = useAnimateOnScroll();
 
-  const socialLinks = [
-    { icon: "fab fa-github", url: "#", label: "GitHub" },
-    { icon: "fab fa-linkedin", url: "#", label: "LinkedIn" },
-    { icon: "fab fa-twitter", url: "#", label: "Twitter" },
-    { icon: "fab fa-medium", url: "#", label: "Medium" },
-  ];
-
   const personalInfo = [
-    { title: "Location", value: "San Francisco, CA" },
-    { title: "Experience", value: "5+ Years" },
-    { title: "Education", value: "B.S. Computer Science" },
-    { title: "Languages", value: "English, Spanish" },
+    { title: "Location", value: "London, United Kingdom" },
+    { title: "Experience", value: "6+ Years" },
+    {
+      title: "Education",
+      value: "BEngr. Electrical Engineering <br />MSc. Software Engineering",
+    },
+    { title: "Languages", value: "English" },
   ];
 
   return (
-    <section id="about" className="py-20 bg-dark-lighter">
+    <section id="about" className="py-20 bg-dark">
       <div className="container mx-auto px-4">
-        <div
-          ref={refSection}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isSectionVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+        <div ref={refSection} className="text-center mb-16 relative">
+          <motion.h3
+            className="text-6xl md:text-8xl font-black text-[#39383a] text-opacity-50 uppercase mb-8 tracking-wider"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-3xl font-bold inline-block mb-4">
-              <span className="gradient-text">About Me</span>
-            </h2>
-            <div className="w-24 h-1 gradient-bg mx-auto rounded-full"></div>
-          </motion.div>
+            ABOUT ME
+          </motion.h3>
+          <motion.h3
+            className="text-4xl md:text-5xl font-black uppercase mb-8 tracking-wider absolute top-3 md:top-6 left-0 right-0"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            ABOUT ME
+          </motion.h3>
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -52,7 +51,7 @@ const AboutSection = () => {
                   className="object-cover w-full h-full"
                   loading="lazy"
                   width="400"
-                  height="500"
+                  height="300"
                 />
               </div>
             </div>
@@ -60,33 +59,39 @@ const AboutSection = () => {
 
           <div ref={refContent} className="space-y-6">
             <motion.p
-              className="text-lg"
+              className="text-lg text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={isContentVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              I'm a passionate frontend developer with 5+ years of experience creating responsive,
-              user-friendly web applications. With a strong foundation in JavaScript and modern frameworks,
-              I build solutions that are both beautiful and performant.
+              An experienced Software Engineer with over six years of solid
+              professional experience in building engaging and pixel-perfect
+              solutions, redefining software workflows, while adapting latest
+              technology trends; deploying modular and clean code architectures.
             </motion.p>
             <motion.p
-              className="text-lg"
+              className="text-lg text-gray-400"
               initial={{ opacity: 0, y: 20 }}
               animate={isContentVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              My journey in web development began at the University of Technology, where I earned my
-              Bachelor's degree in Computer Science. Since then, I've worked with various companies
-              to deliver compelling user experiences and solve complex frontend challenges.
+              As a senior engineer, I not only write code, but architect proper
+              development life cycles and patterns that fosters team
+              collaboration, while coaching junior teammates and applying great
+              mastery in modern technologies and versatility in coding styles.
+              Since then, I've worked with various companies across multiple
+              sectors to deliver compelling user experiences and solve complex
+              software challenges.
             </motion.p>
             <motion.p
-              className="text-lg"
+              className="text-lg text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={isContentVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              When I'm not coding, you can find me contributing to open-source projects, writing technical
-              articles, or exploring new technologies to stay at the cutting edge of web development.
+              When I'm not coding, you can find me contributing to open-source
+              projects, writing technical articles, or exploring new
+              technologies to stay at the cutting edge of web development.
             </motion.p>
 
             <motion.div
@@ -97,29 +102,14 @@ const AboutSection = () => {
             >
               {personalInfo.map((info, index) => (
                 <div key={index}>
-                  <h3 className="text-primary font-semibold mb-2">{info.title}</h3>
-                  <p>{info.value}</p>
+                  <h3 className="text-primary font-semibold mb-2">
+                    {info.title}
+                  </h3>
+                  <p
+                    className="text-gray-400"
+                    dangerouslySetInnerHTML={{ __html: info.value }}
+                  />
                 </div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              className="flex space-x-4 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isContentVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.url}
-                  className="text-gray-400 hover:text-primary transition-colors"
-                  aria-label={link.label}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <i className={`${link.icon} text-2xl`}></i>
-                </motion.a>
               ))}
             </motion.div>
           </div>

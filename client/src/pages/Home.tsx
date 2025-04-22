@@ -20,8 +20,8 @@ const Home = () => {
       <main>
         <HeroSection />
         <AboutSection />
-        <ExperienceSection />
         <SkillsSection />
+        {/* <ExperienceSection /> */}
         <ProjectsSection />
         <ContactSection />
       </main>
