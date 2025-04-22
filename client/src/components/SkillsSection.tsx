@@ -6,10 +6,11 @@ interface Skill {
   percentage: number;
 }
 
-interface Tool {
+interface PremiumTool {
   name: string;
+  description: string;
   icon: string;
-  category: string;
+  logo?: string;
 }
 
 interface TechIcon {
@@ -29,13 +30,43 @@ const SkillsSection = () => {
     { name: "Responsive Design", percentage: 95 },
   ];
 
-  const tools: Tool[] = [
-    { name: "Git & GitHub", icon: "fab fa-git-alt", category: "Version Control" },
-    { name: "Figma", icon: "fab fa-figma", category: "UI/UX Design" },
-    { name: "RESTful APIs", icon: "fas fa-server", category: "API Integration" },
-    { name: "PWAs", icon: "fas fa-mobile-alt", category: "Progressive Web Apps" },
-    { name: "Performance", icon: "fas fa-tachometer-alt", category: "Web Optimization" },
-    { name: "Accessibility", icon: "fas fa-universal-access", category: "WCAG Standards" },
+  const premiumTools: PremiumTool[] = [
+    { 
+      name: "Framer", 
+      description: "Website Builder", 
+      icon: "F",
+      logo: "fas fa-cube" 
+    },
+    { 
+      name: "Figma", 
+      description: "Design Tool", 
+      icon: "Fi",
+      logo: "fab fa-figma" 
+    },
+    { 
+      name: "Lemon Squeezy", 
+      description: "Payments Provider", 
+      icon: "L",
+      logo: "fas fa-lemon" 
+    },
+    { 
+      name: "ChatGPT", 
+      description: "AI Assistant", 
+      icon: "C",
+      logo: "fas fa-robot" 
+    },
+    { 
+      name: "Notion", 
+      description: "Productivity Tool", 
+      icon: "N",
+      logo: "fab fa-n" 
+    },
+    { 
+      name: "Nextjs", 
+      description: "React framework", 
+      icon: "N",
+      logo: "fab fa-react" 
+    },
   ];
 
   const techIcons: TechIcon[] = [
@@ -103,39 +134,46 @@ const SkillsSection = () => {
             </div>
           </div>
 
-          {/* Additional Skills */}
+          {/* Premium Tools Section (New) */}
           <div>
             <h3 className="text-xl font-bold mb-6 flex items-center">
               <span className="inline-block p-2 mr-3 rounded-md bg-primary/20 text-primary">
                 <i className="fas fa-tools"></i>
               </span>
-              Tools & Other Skills
+              Premium Tools
             </h3>
-
-            <div className="grid grid-cols-2 gap-4">
-              {tools.map((tool, index) => {
-                const { ref, isVisible } = useAnimateOnScroll(0.1);
-                
-                return (
-                  <motion.div
-                    key={tool.name}
-                    ref={ref}
-                    className="bg-dark p-4 rounded-lg border border-dark-light flex items-center card-hover transition-all"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                    whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(16, 185, 129, 0.2)" }}
-                  >
-                    <div className="w-10 h-10 flex items-center justify-center mr-3 text-primary text-xl">
-                      <i className={tool.icon}></i>
-                    </div>
-                    <div>
-                      <h4 className="font-medium">{tool.name}</h4>
-                      <div className="text-xs text-gray-400">{tool.category}</div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            
+            <div className="space-y-4">
+              <div className="text-5xl font-extrabold mb-8">
+                <span className="text-white">PREMIUM</span>
+                <br />
+                <span className="text-gray-600">TOOLS</span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-6">
+                {premiumTools.map((tool, index) => {
+                  const { ref, isVisible } = useAnimateOnScroll(0.1);
+                  
+                  return (
+                    <motion.div
+                      key={tool.name}
+                      ref={ref}
+                      className="flex items-center space-x-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
+                    >
+                      <div className="w-12 h-12 rounded-md bg-white flex items-center justify-center text-black">
+                        <i className={tool.logo}></i>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white">{tool.name}</h4>
+                        <p className="text-sm text-gray-400">{tool.description}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
