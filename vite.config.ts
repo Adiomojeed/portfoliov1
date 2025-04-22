@@ -19,13 +19,13 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        "@": path.resolve(import.meta.dirname, "client", "src"),
+        "@": path.resolve(import.meta.dirname, "src"),
       },
     },
-    root: path.resolve(import.meta.dirname, "client"),
     build: {
-      outDir: path.resolve(import.meta.dirname, "dist/public"),
+      outDir: path.resolve(import.meta.dirname, "dist"),
       emptyOutDir: true,
     },
+    base: '/'
   }
 });
