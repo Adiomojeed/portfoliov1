@@ -46,7 +46,7 @@ const AboutSection = () => {
             <div className="bg-dark rounded-xl overflow-hidden p-1 border border-dark-light">
               <div className="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+                  src="https://res.cloudinary.com/codeleaf/image/upload/v1745351103/abt4.webp"
                   alt="Professional developer portrait"
                   className="object-cover w-full h-full"
                   loading="lazy"
