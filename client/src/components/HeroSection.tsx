@@ -113,11 +113,13 @@ const HeroSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View My Work
+              View My Works
             </motion.button>
             <motion.button
               className="px-6 py-3 border border-primary rounded-md text-primary font-medium transition-all hover:bg-primary/10"
-              onClick={() => scrollToSection("contact")}
+              onClick={() =>
+                window.open("https://bit.ly/mojeed-adio-cv", "_blank")
+              }
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -133,6 +135,7 @@ const HeroSection = () => {
                 <motion.a
                   key={index}
                   href={link.url}
+                  target="_blank"
                   className="text-gray-400 hover:text-primary transition-colors"
                   aria-label={link.label}
                   whileHover={{ scale: 1.2, y: -2 }}
@@ -165,7 +168,7 @@ const HeroSection = () => {
             <div className="relative w-full h-full rounded-full border-2 border-primary/30 flex items-center justify-center overflow-hidden">
               <div className="absolute inset-2 rounded-full bg-dark-lighter flex items-center justify-center">
                 <motion.div
-                  className="text-6xl text-primary"
+                  className="bg-white w-full h-full rounded-full"
                   animate={{ rotate: [0, 5, 0, -5, 0] }}
                   transition={{
                     duration: 6,
@@ -173,7 +176,12 @@ const HeroSection = () => {
                     ease: "easeInOut",
                   }}
                 >
-                  <i className="fas fa-code"></i>
+                  <img
+                    src="https://res.cloudinary.com/codeleaf/image/upload/v1745348425/pp.jpg"
+                    alt="Professional developer portrait"
+                    className="object-cover rounded-full w-[300px] h-[300px]"
+                    loading="lazy"
+                  />
                 </motion.div>
               </div>
             </div>

@@ -33,16 +33,20 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`https://formspree.io/f/mdkgoapg`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `https://formspree.io/f/${process.env.VITE_FORMSPREE_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         toast({
@@ -206,6 +210,7 @@ const ContactSection = () => {
                         <motion.a
                           key={index}
                           href={social.url}
+                          target="_blank"
                           className="w-10 h-10 rounded-full bg-dark-light flex items-center justify-center hover:bg-primary/20 transition-colors"
                           aria-label={social.label}
                           whileHover={{ scale: 1.1 }}
@@ -318,7 +323,7 @@ const ContactSection = () => {
                   >
                     {isSubmitting ? (
                       <>
-                        Sending...{" "}
+                        Submitting{" "}
                         <i className="fas fa-spinner fa-spin ml-2"></i>
                       </>
                     ) : (

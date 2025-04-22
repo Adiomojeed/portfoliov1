@@ -9,7 +9,7 @@ interface MobileMenuProps {
 const MobileMenu = ({ isOpen, onClose, onNavClick }: MobileMenuProps) => {
   const menuItems = [
     { name: "About", id: "about" },
-    { name: "Experience", id: "experience" },
+    // { name: "Experience", id: "experience" },
     { name: "Skills", id: "skills" },
     { name: "Projects", id: "projects" },
     { name: "Contact", id: "contact" },

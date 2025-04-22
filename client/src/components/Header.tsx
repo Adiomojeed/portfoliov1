@@ -43,7 +43,7 @@ const Header = () => {
           <ul className="flex space-x-8">
             {[
               { name: "About", id: "about" },
-              { name: "Experience", id: "experience" },
+              // { name: "Experience", id: "experience" },
               { name: "Skills", id: "skills" },
               { name: "Projects", id: "projects" },
               { name: "Contact", id: "contact" },
