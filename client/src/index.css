@@ -1,35 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 0%;
+  --popover-foreground: 0 0% 100%;
+  --card: 0 0% 0%;
+  --card-foreground: 0 0% 100%;
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
   --primary: 160 84% 39%;
   --primary-foreground: 211 100% 99%;
   --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary-foreground: 0 0% 100%;
   --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive-foreground: 0 0% 100%;
   --ring: 240 4.9% 83.9%;
   --radius: 0.5rem;
 
   /* Custom theme colors */
-  --dark: 240 10% 3.9%;
-  --dark-lighter: 240 5% 11.8%;
-  --dark-light: 240 5% 17.5%;
+  --dark: 0 0% 0%;
+  --dark-lighter: 0 0% 9%;
+  --dark-light: 0 0% 15%;
   --secondary-color: 265 84% 64%;
   --tertiary-color: 217 91% 60%;
+  --text-color: 270 1% 22%;
   --chart-1: 160 84% 39%;
   --chart-2: 217 91% 60%;
   --chart-3: 265 84% 64%;
@@ -43,7 +46,33 @@
   }
 
   body {
-    @apply font-sans antialiased bg-dark text-gray-200;
+    @apply antialiased bg-dark text-white;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply text-base md:text-lg text-[#39383A];
   }
 
   /* Custom classes */
@@ -77,5 +106,12 @@
   
   .mobile-nav.open {
     transform: translateX(0);
+  }
+
+  .skill-tag {
+    @apply inline-flex items-center rounded-md py-1 px-3 text-sm;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
   }
 }

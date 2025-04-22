@@ -1,209 +1,164 @@
 import { motion } from "framer-motion";
 import useAnimateOnScroll from "@/hooks/useAnimateOnScroll";
 
-interface Skill {
+interface SkillTag {
   name: string;
-  percentage: number;
+  icon?: string;
+  color?: string;
+  backgroundColor?: string;
+  alias?: string | undefined;
 }
 
-interface PremiumTool {
-  name: string;
-  description: string;
-  icon: string;
-  logo?: string;
-}
-
-interface TechIcon {
-  name: string;
-  icon: string;
-  textColor: string;
+interface SkillCategory {
+  title: string;
+  skills: SkillTag[];
 }
 
 const SkillsSection = () => {
   const { ref: sectionRef, isVisible: isSectionVisible } = useAnimateOnScroll();
 
-  const frontendSkills: Skill[] = [
-    { name: "React/Next.js", percentage: 95 },
-    { name: "JavaScript/TypeScript", percentage: 90 },
-    { name: "HTML5/CSS3", percentage: 95 },
-    { name: "Tailwind CSS", percentage: 90 },
-    { name: "Responsive Design", percentage: 95 },
+  const skillCategories: SkillCategory[] = [
+    {
+      title: "FRONTEND",
+      skills: [
+        { name: "JavaScript", icon: "fab fa-js-square", color: "#fff", backgroundColor: "#EFD81D", alias: "JS" },
+        { name: "TypeScript", icon: "fab fa-js", color: "#fff", backgroundColor: "#3178C6", alias: "TS" },
+        { name: "React", icon: "fab fa-react", color: "#fff", backgroundColor: "#61DAFB" },
+        { name: "Next.js", icon: "fab fa-react", color: "#fff", backgroundColor: "#000", alias: "N" },
+        { name: "Redux", icon: "fas fa-code-branch", color: "#fff", backgroundColor: "#764ABC" },
+        { name: "Tailwind CSS", icon: "fab fa-css3", color: "#fff", backgroundColor: "#38B2AC" },
+        { name: "GSAP", icon: "fas fa-bolt", color: "#fff", backgroundColor: "#88CE02" },
+        { name: "Framer Motion", icon: "fas fa-film", color: "#fff", backgroundColor: "#7928CA" },
+        { name: "SASS", icon: "fab fa-sass", color: "#fff", backgroundColor: "#CC6699" },
+        { name: "Bootstrap", icon: "fab fa-bootstrap", color: "#fff", backgroundColor: "#7952B3", alias: "B" },
+        { name: "React Query", icon: "fas fa-exchange-alt", color: "#fff", backgroundColor: "#FF4154" },
+        { name: "Shopify Hydrogen", icon: "fas fa-shopping-bag", color: "#fff", backgroundColor: "#95BF47" },
+        { name: "Apollo/GraphQL", icon: "fas fa-project-diagram", color: "#fff", backgroundColor: "#E535AB" },
+        { name: "BEM/SASS/SCSS", icon: "fab fa-css3-alt", color: "#fff", backgroundColor: "#CC6699" },
+        { name: "Chakra UI", icon: "fas fa-layer-group", color: "#fff", backgroundColor: "#319795" },
+        { name: "Material UI", icon: "fas fa-palette", color: "#fff", backgroundColor: "#0081CB" },
+      ]
+    },
+    {
+      title: "BACKEND",
+      skills: [
+        { name: "Node.js", icon: "fab fa-node-js", color: "#fff", backgroundColor: "#68A063" },
+        { name: "Nest.js", icon: "fas fa-feather-alt", color: "#fff", backgroundColor: "#E0234E" },
+        { name: "Express.js", icon: "fab fa-node", color: "#fff", backgroundColor: "#000", alias: "EX" },
+        { name: "TypeScript", icon: "fab fa-js", color: "#fff", backgroundColor: "#3178C6" },
+        { name: "Firebase", icon: "fas fa-fire", color: "#fff", backgroundColor: "#FFCA28" },
+        { name: "PHP", icon: "fab fa-php", color: "#fff", backgroundColor: "#777BB4" },
+        { name: "Java (Spring Boot)", icon: "fab fa-java", color: "#fff", backgroundColor: "#007396" },
+      ]
+    },
+    {
+      title: "DATABASE",
+      skills: [
+        { name: "MySQL", icon: "fas fa-database", color: "#fff", backgroundColor: "#4479A1" },
+        { name: "PostgreSQL", icon: "fas fa-database", color: "#fff", backgroundColor: "#336791" },
+        { name: "MongoDB", icon: "fas fa-leaf", color: "#fff", backgroundColor: "#47A248" },
+        { name: "Prisma", icon: "fas fa-database", color: "#fff", backgroundColor: "#2D3748" },
+      ]
+    },
+    {
+      title: "TOOLS",
+      skills: [
+        { name: "Git", icon: "fab fa-git-alt", color: "#fff", backgroundColor: "#F05032" },
+        { name: "Docker", icon: "fab fa-docker", color: "#fff", backgroundColor: "#2496ED" },
+        { name: "AWS", icon: "fab fa-aws", color: "#fff", backgroundColor: "#FF9900" },
+        { name: "Figma", icon: "fab fa-figma", color: "#fff", backgroundColor: "#F24E1E" },
+        { name: "Storybook", icon: "fas fa-book", color: "#fff", backgroundColor: "#FF4785" },
+        { name: "VS Code", icon: "fas fa-code", color: "#fff", backgroundColor: "#007ACC" },
+        { name: "Slack", icon: "fab fa-slack", color: "#fff", backgroundColor: "#4A154B" },
+        { name: "Jest", icon: "fas fa-check-circle", color: "#fff", backgroundColor: "#C21325" },
+        { name: "Vitest", icon: "fas fa-vial", color: "#fff", backgroundColor: "#729B1B" },
+        { name: "RTL", icon: "fas fa-vial", color: "#fff", backgroundColor: "#E33332" },
+        { name: "Jira", icon: "fab fa-jira", color: "#fff", backgroundColor: "#0052CC" },
+        { name: "Trello", icon: "fab fa-trello", color: "#fff", backgroundColor: "#0079BF" },
+        { name: "ClickUp", icon: "fas fa-tasks", color: "#fff", backgroundColor: "#7B68EE" },
+        { name: "Discord", icon: "fab fa-discord", color: "#fff", backgroundColor: "#5865F2" },
+        { name: "GA4", icon: "fas fa-chart-line", color: "#fff", backgroundColor: "#F9AB00" },
+        { name: "Sentry", icon: "fas fa-bug", color: "#fff", backgroundColor: "#362D59" },
+        { name: "HubSpot", icon: "fas fa-h-square", color: "#fff", backgroundColor: "#FF7A59" },
+        { name: "Webpack", icon: "fas fa-cubes", color: "#fff", backgroundColor: "#8DD6F9" },
+        { name: "Babel", icon: "fas fa-cogs", color: "#fff", backgroundColor: "#F9DC3E" },
+        { name: "Vite", icon: "fas fa-bolt", color: "#fff", backgroundColor: "#646CFF" },
+      ]
+    }
   ];
 
-  const premiumTools: PremiumTool[] = [
-    { 
-      name: "Framer", 
-      description: "Website Builder", 
-      icon: "F",
-      logo: "fas fa-cube" 
-    },
-    { 
-      name: "Figma", 
-      description: "Design Tool", 
-      icon: "Fi",
-      logo: "fab fa-figma" 
-    },
-    { 
-      name: "Lemon Squeezy", 
-      description: "Payments Provider", 
-      icon: "L",
-      logo: "fas fa-lemon" 
-    },
-    { 
-      name: "ChatGPT", 
-      description: "AI Assistant", 
-      icon: "C",
-      logo: "fas fa-robot" 
-    },
-    { 
-      name: "Notion", 
-      description: "Productivity Tool", 
-      icon: "N",
-      logo: "fab fa-n" 
-    },
-    { 
-      name: "Nextjs", 
-      description: "React framework", 
-      icon: "N",
-      logo: "fab fa-react" 
-    },
-  ];
-
-  const techIcons: TechIcon[] = [
-    { name: "React", icon: "fab fa-react", textColor: "text-blue-500" },
-    { name: "JavaScript", icon: "fab fa-js", textColor: "text-white" },
-    { name: "CSS3", icon: "fab fa-css3-alt", textColor: "text-blue-600" },
-    { name: "HTML5", icon: "fab fa-html5", textColor: "text-orange-500" },
-    { name: "Bootstrap", icon: "fab fa-bootstrap", textColor: "text-purple-500" },
-    { name: "Git", icon: "fab fa-git-alt", textColor: "text-orange-600" },
-  ];
-
-  const SkillBar = ({ skill, index }: { skill: Skill; index: number }) => {
+  const SkillTag = ({ skill }: { skill: SkillTag }) => {
     const { ref, isVisible } = useAnimateOnScroll(0.1);
     
     return (
-      <div ref={ref} className="animate-on-scroll">
-        <div className="flex justify-between mb-1">
-          <span className="font-medium">{skill.name}</span>
-          <span>{skill.percentage}%</span>
+      <motion.div
+        ref={ref}
+        className="inline-flex items-center space-x-2 m-1"
+        initial={{ opacity: 0, y: 10 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.4 }}
+        whileHover={{ scale: 1.05 }}
+      >
+        <div 
+          className="flex items-center space-x-2 px-3 py-1 rounded-md" 
+          style={{ backgroundColor: skill.backgroundColor || 'rgba(255, 255, 255, 0.1)' }}
+        >
+          {skill.alias ? (
+            <span className="text-white font-medium">{skill.alias}</span>
+          ) : skill.icon ? (
+            <i className={`${skill.icon} text-white`}></i>
+          ) : null}
+          <span className="text-white">{skill.name}</span>
         </div>
-        <div className="w-full bg-dark-light rounded-full h-2">
-          <motion.div
-            className="gradient-bg h-2 rounded-full"
-            style={{ width: "0%" }}
-            animate={isVisible ? { width: `${skill.percentage}%` } : {}}
-            transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
-          ></motion.div>
-        </div>
-      </div>
+      </motion.div>
     );
   };
 
   return (
-    <section id="skills" className="py-20 bg-dark-lighter relative">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxMEI5ODEiIGZpbGwtb3BhY2l0eT0iMC4wNCI+PHBhdGggZD0iTTM2IDM0djIyaDEydi0yMnptLTI0IDExaDEydjExaC0xMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-50"></div>
+    <section id="skills" className="py-20 bg-dark relative">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxMEI5ODEiIGZpbGwtb3BhY2l0eT0iMC4wNCI+PHBhdGggZD0iTTM2IDM0djIyaDEydi0yMnptLTI0IDExaDEydjExaC0xMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div ref={sectionRef} className="text-center mb-16">
+        <div ref={sectionRef} className="mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isSectionVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
+            className="flex items-center space-x-2 mb-8"
           >
-            <h2 className="text-3xl font-bold inline-block mb-4">
-              <span className="gradient-text">Skills & Tools</span>
-            </h2>
-            <div className="w-24 h-1 gradient-bg mx-auto rounded-full"></div>
+            <span className="text-white text-3xl">*</span>
+            <h2 className="font-bold text-2xl">MY STACK</h2>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Frontend Skills */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 flex items-center">
-              <span className="inline-block p-2 mr-3 rounded-md bg-primary/20 text-primary">
-                <i className="fas fa-laptop-code"></i>
-              </span>
-              Frontend Development
-            </h3>
-
-            <div className="space-y-4">
-              {frontendSkills.map((skill, index) => (
-                <SkillBar key={skill.name} skill={skill} index={index} />
-              ))}
-            </div>
-          </div>
-
-          {/* Premium Tools Section (New) */}
-          <div>
-            <h3 className="text-xl font-bold mb-6 flex items-center">
-              <span className="inline-block p-2 mr-3 rounded-md bg-primary/20 text-primary">
-                <i className="fas fa-tools"></i>
-              </span>
-              Premium Tools
-            </h3>
+        <div className="space-y-16">
+          {skillCategories.map((category, categoryIndex) => {
+            const { ref, isVisible } = useAnimateOnScroll(0.1);
             
-            <div className="space-y-4">
-              <div className="text-5xl font-extrabold mb-8">
-                <span className="text-white">PREMIUM</span>
-                <br />
-                <span className="text-gray-600">TOOLS</span>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-6">
-                {premiumTools.map((tool, index) => {
-                  const { ref, isVisible } = useAnimateOnScroll(0.1);
-                  
-                  return (
-                    <motion.div
-                      key={tool.name}
-                      ref={ref}
-                      className="flex items-center space-x-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                    >
-                      <div className="w-12 h-12 rounded-md bg-white flex items-center justify-center text-black">
-                        <i className={tool.logo}></i>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-white">{tool.name}</h4>
-                        <p className="text-sm text-gray-400">{tool.description}</p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Tech Stack Icons */}
-        <div className="mt-16">
-          <h3 className="text-xl font-bold mb-8 text-center">Technologies I Work With</h3>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-            {techIcons.map((tech, index) => {
-              const { ref, isVisible } = useAnimateOnScroll(0.1);
-              
-              return (
-                <motion.div
-                  key={tech.name}
-                  ref={ref}
-                  className="flex flex-col items-center justify-center bg-dark p-4 rounded-lg border border-dark-light card-hover transition-all"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                  whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(16, 185, 129, 0.2)" }}
+            return (
+              <div key={category.title} ref={ref} className="mb-12">
+                <motion.h3
+                  className="text-5xl font-black uppercase mb-8 tracking-wider"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <div className={`text-4xl ${tech.textColor} mb-2`}>
-                    <i className={tech.icon}></i>
-                  </div>
-                  <span className="text-sm font-medium">{tech.name}</span>
+                  {category.title}
+                </motion.h3>
+                
+                <motion.div
+                  className="flex flex-wrap"
+                  initial={{ opacity: 0 }}
+                  animate={isVisible ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  {category.skills.map((skill, index) => (
+                    <SkillTag key={skill.name} skill={skill} />
+                  ))}
                 </motion.div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
