@@ -10,7 +10,7 @@ const AboutSection = () => {
     { title: "Experience", value: "6+ Years" },
     {
       title: "Education",
-      value: "BEngr. Electrical Engineering <br />MSc. Software Engineering",
+      value: "MSc. Software Engineering<br />BEngr. Electrical Engineering",
     },
     { title: "Languages", value: "English" },
   ];
@@ -46,7 +46,7 @@ const AboutSection = () => {
             <div className="bg-dark rounded-xl overflow-hidden p-1 border border-dark-light">
               <div className="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden">
                 <img
-                  src="https://res.cloudinary.com/codeleaf/image/upload/v1745351103/abt4.webp"
+                  src="https://res.cloudinary.com/codeleaf/image/upload/v1750374117/avt.jpg"
                   alt="Professional developer portrait"
                   className="object-cover w-full h-full"
                   loading="lazy"
@@ -79,7 +79,7 @@ const AboutSection = () => {
               development life cycles and patterns that fosters team
               collaboration, while coaching junior teammates and applying great
               mastery in modern technologies and versatility in coding styles.
-              Since then, I've worked with various companies across multiple
+              I've worked with various companies across multiple
               sectors to deliver compelling user experiences and solve complex
               software challenges.
             </motion.p>

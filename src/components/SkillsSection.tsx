@@ -152,12 +152,6 @@ const SkillsSection = () => {
           backgroundColor: "#3178C6",
         },
         {
-          name: "Firebase",
-          icon: "fas fa-fire",
-          color: "#fff",
-          backgroundColor: "#FFCA28",
-        },
-        {
           name: "PHP",
           icon: "fab fa-php",
           color: "#fff",
@@ -197,6 +191,12 @@ const SkillsSection = () => {
           icon: "fas fa-database",
           color: "#fff",
           backgroundColor: "#2D3748",
+        },
+        {
+          name: "Firebase",
+          icon: "fas fa-fire",
+          color: "#fff",
+          backgroundColor: "#FFCA28",
         },
       ],
     },
