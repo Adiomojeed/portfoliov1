@@ -118,7 +118,7 @@ const HeroSection = () => {
             <motion.button
               className="px-6 py-3 border border-primary rounded-md text-primary font-medium transition-all hover:bg-primary/10"
               onClick={() =>
-                window.open("https://bit.ly/mojeed-adio-cv", "_blank")
+                window.open("https://bit.ly/mojeed-adio-cv-", "_blank")
               }
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
